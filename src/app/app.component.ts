@@ -7,8 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'proyecto';
-  onSave(){
-    alert("AAAAAAAAAAAAA");
+  onSave(texto:any){
+    alert(texto);
     }
 }
 
