@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { NotasService } from './notas.service';
+import {Nota} from "./shared/models/nota.model";
+
 
 @Component({
   selector: 'app-root',
@@ -28,8 +30,8 @@ export class AppComponent {
   }
 
   //Placeholder para acceder a las ediciones.
-  grita(id:any){
-    alert(id)
+  grita(id:Nota){
+    alert(id.dameDetalles());
   }
 
 }
