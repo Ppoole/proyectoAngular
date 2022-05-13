@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Nota} from "./shared/models/nota.model";
 import { map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 
 
@@ -16,8 +17,10 @@ export class NotasService {
 
   //Conexion con el servidor PHP angNotas. TODO: Orientarlo a objetos.
   private notasUrl = 'http://127.0.0.1/angNotas.php';
-  dameNotas(tel:any):Observable<Nota>{
-    return this.http.post<Nota>(this.notasUrl, {
+  dameNotas(tel:any):Observable<any>{
+    
+
+    return this.http.post<any>(this.notasUrl, {
       tel: tel
     })
   }

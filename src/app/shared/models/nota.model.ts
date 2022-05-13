@@ -11,7 +11,19 @@ export class Nota implements Deserializable {
     contenido: string;
     detalles: string;
 
-    
+    constructor(datos:any){
+      this.codNota=datos.codNota;
+      this.creador=datos.creador;
+      this.fecha=datos.fecha;
+      this.peligrosidad=datos.peligrosidad;
+      this.impacto=datos.impacto;
+      this.completada=datos.completada;
+      this.tel=datos.tel;
+      this.contenido=datos.contenido;
+      this.detalles=datos.detalles;
+    }
+
+
     
 
     deserialize(input: any) {
