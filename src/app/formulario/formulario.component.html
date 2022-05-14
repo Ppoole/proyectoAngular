@@ -1,1 +1,45 @@
-<p>formulario works!</p>
+<form>
+    <div class="mb-3">
+      <label for="email1" class="form-label">Email:</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email1"
+        aria-describedby="emailHelp"
+        [formControl]="email"
+      />
+      <div *ngIf="email.touched">
+        <em class="form-text" *ngIf="email.invalid && email?.errors.required"
+          >El email es obligatorio</em
+        >
+        <em class="form-text" *ngIf="email.invalid && email?.errors.email"
+          >El email no es válido</em
+        >
+      </div>
+    </div>
+  
+    <div class="mb-3">
+      <label for="clave1" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        id="clave1"
+        [formControl]="clave"
+        minlength="4"
+      />
+      <div *ngIf="clave.touched">
+        <em class="form-text" *ngIf="clave.invalid && clave?.errors.required"
+          >La contraseña es obligatoria</em
+        >
+        <em class="form-text" *ngIf="clave.invalid && clave?.errors.minlength"
+          >La contraseña debe tener 4 caracteres al menos</em
+        >
+        <!--ojo: minlength aquí en minúsculas todas-->
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="!formulario.valid">
+      Entrar
+    </button>
+  </form>
+  <div *ngIf="formulario.valid">{{formulario.value | json }}</div>
+  

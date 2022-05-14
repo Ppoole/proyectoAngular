@@ -6,8 +6,9 @@
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
+    
     "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
+    "noPropertyAccessFromIndexSignature": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "sourceMap": true,
@@ -16,6 +17,7 @@
     "experimentalDecorators": true,
     "strictPropertyInitialization":false,
     "suppressImplicitAnyIndexErrors": true,
+    "strictNullChecks":false,
     "moduleResolution": "node",
     "importHelpers": true,
     "target": "es2017",
@@ -27,7 +29,9 @@
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
+    "noPropertyAccessFromIndexSignature": false,
     "suppressImplicitAnyIndexErrors": true,
+    "strictNullChecks":false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true

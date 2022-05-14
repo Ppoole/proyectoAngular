@@ -6,14 +6,14 @@ import { AppComponent } from './app.component';
 import {NgbdModalComponentModule} from './modalComponent/modal-component.module';
 import { NgbdModalComponent } from './modalComponent/modal-component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
-//import { FormularioComponent } from "./formulario/formulario.component";
+
 
 
 
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,HttpClientModule,NgbdModalComponentModule,FormsModule,ReactiveFormsModule,
