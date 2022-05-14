@@ -1,5 +1,6 @@
-import { Component, NgModule, OnInit } from "@angular/core";
+import { Component, NgModule, OnInit, Input } from "@angular/core";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { Nota } from "../shared/models/nota.model";
 
 
 
@@ -13,7 +14,7 @@ export class FormularioComponent implements OnInit {
   clave: FormControl;
   formulario: FormGroup;
   resultado:string;
-
+  @Input() codNota:Nota;
   constructor() {}
 
   ngOnInit() {

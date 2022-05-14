@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {Nota} from '../shared/models/nota.model'
 
 
 
@@ -12,7 +13,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
       <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
-    <app-formulario></app-formulario>
+    
+    <app-formulario [codNota]=codNota></app-formulario>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
@@ -20,17 +22,18 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   `
 })
 export class NgbdModalContent {
-  @Input() name:string;
-
+  @Input() codNota:Nota;
+  
   constructor(public activeModal: NgbActiveModal) {}
 }
 
 @Component({selector: 'ngbd-modal-component', templateUrl: './modal-component.html'})
 export class NgbdModalComponent {
+  @Input() codNota:Nota;
   constructor(private modalService: NgbModal) {}
 
   open() {
     const modalRef = this.modalService.open(NgbdModalContent);
-    modalRef.componentInstance.name = 'World';
+    modalRef.componentInstance.codNota = this.codNota;
   }
 }

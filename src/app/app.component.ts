@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input ,Output, EventEmitter} from '@angular/core';
 import { NotasService } from './notas.service';
 import {Nota} from "./shared/models/nota.model";
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
@@ -24,7 +24,8 @@ export class AppComponent {
   constructor(private notasService: NotasService) {}
 
   //El array lo pueblo mas adelante, pero lo crearé aquí, mas que nada porque no se si se puede crearlo según recibes los datos.
-  arrNotas:any[]=[];
+  
+  arrNotas:Nota[]=[];
   arrPreModel:any;
 
   //En este caso estamos usando un observer. Esto sólo se disparará al recibir una reacción, pero si recibe mas de una, lo hará varias veces. Lo cual es interesante.
@@ -41,11 +42,13 @@ export class AppComponent {
 
   //Placeholder para acceder a las ediciones.
   grita(id:Nota){
+    
+    
     alert(id.dameDetalles());
   }
 
+ 
 
-  
 }
 platformBrowserDynamic()
     .bootstrapModule(NgbdModalComponentModule)

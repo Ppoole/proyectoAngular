@@ -1,6 +1,8 @@
 import {Deserializable} from "./deserializable.model";
+import {Input,Component} from '@angular/core';
 
-export class Nota implements Deserializable {
+
+export class Nota {
     codNota: number;
     creador: number;
     fecha:Date;
