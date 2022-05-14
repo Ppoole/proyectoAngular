@@ -5,14 +5,18 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import {NgbdModalComponentModule} from './modalComponent/modal-component.module';
 import { NgbdModalComponent } from './modalComponent/modal-component';
-import { ContenidoNotaComponent } from './contenido-nota/contenido-nota.component';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+//import { FormularioComponent } from "./formulario/formulario.component";
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
   ],
   imports: [
-    BrowserModule,HttpClientModule,NgbdModalComponentModule
+    BrowserModule,HttpClientModule,NgbdModalComponentModule,FormsModule,ReactiveFormsModule,
   ],
   providers: [NgbActiveModal,],
   bootstrap: [AppComponent]
