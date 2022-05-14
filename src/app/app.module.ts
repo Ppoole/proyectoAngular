@@ -3,11 +3,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
-import {NgbdModalComponentModule} from './pag-nota/modal-component.module';
+import {NgbdModalComponentModule} from './modalComponent/modal-component.module';
+import { NgbdModalComponent } from './modalComponent/modal-component';
+import { ContenidoNotaComponent } from './contenido-nota/contenido-nota.component';
 
 @NgModule({
   declarations: [
-    AppComponent  
+    AppComponent,
   ],
   imports: [
     BrowserModule,HttpClientModule,NgbdModalComponentModule

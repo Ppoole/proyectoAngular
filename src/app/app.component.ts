@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NotasService } from './notas.service';
 import {Nota} from "./shared/models/nota.model";
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
-import {NgbdModalComponentModule} from './pag-nota/modal-component.module';
+import {NgbdModalComponentModule} from './modalComponent/modal-component.module';
 
 
 @Component({

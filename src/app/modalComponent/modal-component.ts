@@ -3,7 +3,7 @@ import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'ngbd-modal-content',
-  templateUrl:'modal-template.html'
+  templateUrl:'../contenido-nota/contenido-nota.component.html'
 })
 export class NgbdModalContent {
   @Input() name:string;
