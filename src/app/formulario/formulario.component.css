@@ -1,0 +1,14 @@
+
+.modal-dialog {
+    max-width: 90%!important;
+    margin: 1.75rem auto;
+}
+
+.ngbd-modal-content {
+    width:90%;
+    max-width: 90%!important;
+      height:100%;
+
+
+}
+

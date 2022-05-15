@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, Input, ViewEncapsulation} from '@angular/core';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Nota} from '../shared/models/nota.model'
@@ -9,31 +9,35 @@ import {Nota} from '../shared/models/nota.model'
   selector: 'ngbd-modal-content',
   template: `
     <div class="modal-header">
-      <h4 class="modal-title">Hi there!</h4>
+      <h4 class="modal-title">Detalles de la nota.</h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
     </div>
     <div class="modal-body">
     
-    <app-formulario [codNota]=codNota></app-formulario>
+    <app-formulario [notaActual]=notaActual></app-formulario>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
     </div>
-  `
+  `,
+  styleUrls: ["../formulario/formulario.component.css"]
 })
 export class NgbdModalContent {
-  @Input() codNota:Nota;
+  @Input() notaActual:Nota;
   
   constructor(public activeModal: NgbActiveModal) {}
 }
 
-@Component({selector: 'ngbd-modal-component', templateUrl: './modal-component.html'})
+@Component({selector: 'ngbd-modal-component', 
+templateUrl: './modal-component.html'},
+
+)
 export class NgbdModalComponent {
-  @Input() codNota:Nota;
+  @Input() notaActual:Nota;
   constructor(private modalService: NgbModal) {}
 
   open() {
-    const modalRef = this.modalService.open(NgbdModalContent);
-    modalRef.componentInstance.codNota = this.codNota;
+    const modalRef = this.modalService.open(NgbdModalContent,{ fullscreen: true });
+    modalRef.componentInstance.notaActual = this.notaActual;
   }
 }
