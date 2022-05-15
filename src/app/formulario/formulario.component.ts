@@ -16,29 +16,32 @@ export class FormularioComponent {
   
   
   formularioNota: FormGroup;
+
+  //Voy a usar FormBuilder para simplificar la creación del formulario, pero es una abstracción.
   constructor(private fb: FormBuilder) {
     
     this.crearFormulario();
   }
 
+  //Definimos la creacion del formulario.
   crearFormulario() {
-    
     this.formularioNota = this.fb.group({
-
+      //Defino los campos, y aquí es donde pongo las validaciones.
       creador: ({value:'',disabled:true}),
       fecha: ({value:'',disabled:true}),
       telefono:({value:'',disabled:true}),
-      contenido: '',
-      detalles: '',
-      peligrosidad: '',
-      impacto: ''
+      contenido: ['', Validators.required ],
+      detalles: ['', Validators.required ],
+      peligrosidad:['', Validators.compose([Validators.min(1),Validators.max(9),Validators.required]) ],
+      impacto: ['', Validators.compose([Validators.min(1),Validators.max(9),Validators.required]) ]
 
     });
     
 
   };
 
-
+  //Es necesario popularlo con onInit porque si no aún no tiene notaActual cargada. Primero usa el constructor y luego hace los imports, asi que es necesario llenar 
+  //el formulario en ngOnInit
   ngOnInit(){
     this.retrieveData();
   }
@@ -55,11 +58,17 @@ export class FormularioComponent {
        this.formularioNota.patchValue(res);
   }
   
+  //Es al darle a guardar cambios. Si los cambios son válidos (TODO: enviarlos al servicio y a la BDD)
   onSubmit() {
+    if (this.formularioNota.status=='VALID'){
     this.notaActual=this.cambiarNota();
-    console.log(this.notaActual);
+    }
+    else{
+      alert("Por favor completa la nota.")
+    }
   }
 
+  //Este es el metodo de cambiar la nota. 
   cambiarNota():Nota{
     const modeloFormu=this.formularioNota.value;
     const notaCambiada:Nota={
@@ -79,5 +88,12 @@ export class FormularioComponent {
     };
     return notaCambiada;
   }
+
+
+  //Lo declaro aqui para simplificar el HTML
+  get contenido() { return this.formularioNota.get('contenido'); }
+  get detalles() { return this.formularioNota.get('detalles'); }
+  get peligrosidad() { return this.formularioNota.get('peligrosidad'); }
+  get impacto() { return this.formularioNota.get('impacto'); }
 
 }

@@ -36,6 +36,8 @@ export class NgbdModalComponent {
   @Input() notaActual:Nota;
   constructor(private modalService: NgbModal) {}
 
+
+  // Aqui CREO que estoy enviando notaActual al formulario. La verdad, no lo tengo claro, pero si lo quito se rompe.
   open() {
     const modalRef = this.modalService.open(NgbdModalContent,{ fullscreen: true });
     modalRef.componentInstance.notaActual = this.notaActual;
