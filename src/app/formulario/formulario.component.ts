@@ -21,7 +21,7 @@ export class FormularioComponent {
   formularioNota: FormGroup;
 
   //Voy a usar FormBuilder para simplificar la creación del formulario, pero es una abstracción.
-  constructor(private fb: FormBuilder, private GuardarNotaService: GuardarNotaService) {
+  constructor(private fb: FormBuilder, private GuardarNotaService: GuardarNotaService, private AppComponent:AppComponent) {
     
     this.crearFormulario();
   }
@@ -65,7 +65,7 @@ export class FormularioComponent {
   onSubmit() {
     if (this.formularioNota.status=='VALID'){
     this.notaActual=this.cambiarNota();
-
+    this.AppComponent.dameNumeros(this.notaActual.tel)
       
     this.GuardarNotaService.guardaNota(this.notaActual).subscribe(respuesta=>{
       
