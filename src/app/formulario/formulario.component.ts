@@ -65,11 +65,12 @@ export class FormularioComponent {
   onSubmit() {
     if (this.formularioNota.status=='VALID'){
     this.notaActual=this.cambiarNota();
-    this.AppComponent.dameNumeros(this.notaActual.tel)
+    
       
     this.GuardarNotaService.guardaNota(this.notaActual).subscribe(respuesta=>{
-      
+      this.AppComponent.dameNumeros(this.notaActual.tel)
       return respuesta;
+      
       
     }); 
 
