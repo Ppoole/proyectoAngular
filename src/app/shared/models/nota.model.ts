@@ -1,8 +1,11 @@
 import {Deserializable} from "./deserializable.model";
 import {Input,Component} from '@angular/core';
+import { Observable } from "rxjs";
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 export class Nota {
+  
     codNota: number;
     creador: number;
     fecha:Date;
@@ -12,6 +15,7 @@ export class Nota {
     tel: bigint;
     contenido: string;
     detalles: string;
+    
 
     constructor(datos:any){
       this.codNota=datos.codNota;
@@ -23,6 +27,7 @@ export class Nota {
       this.tel=datos.tel;
       this.contenido=datos.contenido;
       this.detalles=datos.detalles;
+      
     }
 
 
@@ -36,5 +41,11 @@ export class Nota {
     dameDetalles(){
         return this.detalles;
     }
+
+    
+    
+
+      
+    
 
   }

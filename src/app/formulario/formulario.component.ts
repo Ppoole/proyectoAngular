@@ -1,6 +1,9 @@
 import { Component, NgModule, OnInit, Input } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { AppComponent } from "../app.component";
 import { Nota } from "../shared/models/nota.model";
+import { GuardarNotaService } from "../shared/servicios/GuardarNota.service";
+
 
 
 
@@ -18,7 +21,7 @@ export class FormularioComponent {
   formularioNota: FormGroup;
 
   //Voy a usar FormBuilder para simplificar la creación del formulario, pero es una abstracción.
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private GuardarNotaService: GuardarNotaService) {
     
     this.crearFormulario();
   }
@@ -62,6 +65,16 @@ export class FormularioComponent {
   onSubmit() {
     if (this.formularioNota.status=='VALID'){
     this.notaActual=this.cambiarNota();
+
+      
+    this.GuardarNotaService.guardaNota(this.notaActual).subscribe(respuesta=>{
+      
+      return respuesta;
+      
+    }); 
+
+    
+    
     }
     else{
       alert("Por favor completa la nota.")
@@ -82,8 +95,10 @@ export class FormularioComponent {
       peligrosidad: modeloFormu.peligrosidad as number,
       impacto: modeloFormu.impacto as number,
       
+      
       deserialize:this.notaActual.deserialize,
-      dameDetalles:this.notaActual.dameDetalles
+      dameDetalles:this.notaActual.dameDetalles,
+      
 
     };
     return notaCambiada;

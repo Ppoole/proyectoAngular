@@ -1,4 +1,4 @@
-import { Component, Input ,Output, EventEmitter} from '@angular/core';
+import { Component, Input ,Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
 import { NotasService } from './notas.service';
 import {Nota} from "./shared/models/nota.model";
 import {platformBrowserDynamic} from '@angular/platform-browser-dynamic';
@@ -21,7 +21,7 @@ export class AppComponent {
   mostrar=false;
   
   //Genero un servicio de adquisicion de notas.
-  constructor(private notasService: NotasService) {}
+  constructor(private notasService: NotasService, private detectarCambio: ChangeDetectorRef) {  }
 
   //El array lo pueblo mas adelante, pero lo crearé aquí, mas que nada porque no se si se puede crearlo según recibes los datos.
   
@@ -32,19 +32,21 @@ export class AppComponent {
   dameNumeros(tel:any){
     this.notasService.dameNotas(tel).subscribe(nota=>{
       this.arrPreModel=nota;
+      this.arrNotas=[]; // Para que se resetee en vez de alargar la lista.
       for (let i=0; i<this.arrPreModel.length;i++){
         this.arrNotas.push(new Nota(this.arrPreModel[i]));
       }
+      
       console.log(this.arrNotas); //QUitar luego
       this.mostrar=true;
     }); 
   }
-
+  
   //Placeholder para acceder a las ediciones.
-  grita(id:Nota){
+  grita(){
     
     
-    alert(id.dameDetalles());
+    alert("AAAAA");
   }
 
  

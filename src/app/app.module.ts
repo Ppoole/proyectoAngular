@@ -5,6 +5,7 @@ import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent } from './app.component';
 import {NgbdModalComponentModule} from './modalComponent/modal-component.module';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import { GuardarNotaService } from './shared/servicios/GuardarNota.service';
 
 
 
@@ -17,7 +18,7 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
   imports: [
     BrowserModule,HttpClientModule,NgbdModalComponentModule,FormsModule,ReactiveFormsModule,
   ],
-  providers: [NgbActiveModal,],
+  providers: [NgbActiveModal,GuardarNotaService,AppComponent,{ provide: Window, useValue: window }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

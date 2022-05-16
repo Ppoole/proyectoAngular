@@ -2,6 +2,7 @@ import {Component, Input, ViewEncapsulation} from '@angular/core';
 import {NgbActiveModal, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Nota} from '../shared/models/nota.model'
+import { AppComponent } from '../app.component';
 
 
 
@@ -34,12 +35,13 @@ templateUrl: './modal-component.html'},
 )
 export class NgbdModalComponent {
   @Input() notaActual:Nota;
-  constructor(private modalService: NgbModal) {}
+  constructor(private modalService: NgbModal,private AppComponent:AppComponent) {}
 
 
   // Aqui CREO que estoy enviando notaActual al formulario. La verdad, no lo tengo claro, pero si lo quito se rompe.
   open() {
-    const modalRef = this.modalService.open(NgbdModalContent,{ fullscreen: true });
+    const modalRef = this.modalService.open(NgbdModalContent,{ size: 'xl' });
     modalRef.componentInstance.notaActual = this.notaActual;
   }
+  
 }
