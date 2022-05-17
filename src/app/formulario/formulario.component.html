@@ -28,7 +28,10 @@
       </div>
 
       <button type="submit"
-            [disabled]="formularioNota.pristine" class="btn btn-success">Guardar Cambios</button> &nbsp;
+            [disabled]="formularioNota.pristine" *ngIf="soloTelefono==undefined" class="btn btn-success">Guardar Cambios</button> &nbsp;
+            <button type="submit"
+            [disabled]="formularioNota.pristine" *ngIf="soloTelefono!=undefined" class="btn btn-success">Guardar nueva nota</button> &nbsp;
+            
     </label>
   </div>
 </form>

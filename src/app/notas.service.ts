@@ -15,7 +15,7 @@ export class NotasService {
 
   constructor(private http: HttpClient) { }
 
-  //Conexion con el servidor PHP angNotas. TODO: Orientarlo a objetos.
+  //Conexion con el servidor PHP angNotas.
   private notasUrl = 'http://127.0.0.1/angNotas.php';
   dameNotas(tel:any):Observable<any>{
     

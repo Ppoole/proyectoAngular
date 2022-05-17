@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import {NgbdModalComponentModule} from './modalComponent/modal-component.module';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { GuardarNotaService } from './shared/servicios/GuardarNota.service';
+import { NuevaNotaService } from './shared/servicios/NuevaNota.service';
 
 
 
@@ -18,7 +19,7 @@ import { GuardarNotaService } from './shared/servicios/GuardarNota.service';
   imports: [
     BrowserModule,HttpClientModule,NgbdModalComponentModule,FormsModule,ReactiveFormsModule,
   ],
-  providers: [NgbActiveModal,GuardarNotaService,AppComponent,{ provide: Window, useValue: window }],
+  providers: [NgbActiveModal,GuardarNotaService,AppComponent,NuevaNotaService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

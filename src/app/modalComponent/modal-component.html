@@ -1,3 +1,4 @@
- 
-<button class="btn btn-secondary btn-sm" (click)="open()">Editar</button>
+ <!-- Hay dos; uno para editar la antigua y otro para crear la nueva. -->
+<button *ngIf="soloTelefono==undefined" class="btn btn-secondary btn-sm" (click)="open()">Editar</button>
+<button *ngIf="soloTelefono!=undefined" class="btn btn-secondary btn-sm" (click)="open()">Nueva</button>
   

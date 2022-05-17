@@ -15,12 +15,13 @@
   <div id="grande" (click)="dameNumeros(ejemplo.value)">
   <div class=item1> <h1>Aplicación teléfono</h1></div>
 
-  <!-- El # está para poderlo usar de referencia al hacer click. Aún me toca ponerlo al darle al enter, creo que con OnInit pero puede que haya algo mas -->
+  <!-- El # está para poderlo usar de referencia al hacer click. -->
   <input #ejemplo type="text" id="name" name="name" (keyup.enter)="dameNumeros(ejemplo.value)">
+  <button *ngIf="ejemplo.value!=''" (click)="dameNumeros(ejemplo.value)">Buscar</button>
   <div class=item2><h3 class=item21>Introduce el número de teléfono.</h3>
-    <button (click)="dameNumeros(ejemplo.value)">Save</button>
+  
   </div>
-  <!-- Creo un container que solo aparece cuando se ha buscado un número. TODO: esconderlo cuando el numero esté en blanco.-->
+  <!-- Creo un container que solo aparece cuando se ha buscado un número. -->
   <ng-container *ngIf="mostrar==true" >
     <table border=1>
       <!-- TODO: El check de hecho.-->
@@ -31,11 +32,11 @@
  </ng-container>
 
  
- 
+ <ngbd-modal-component [soloTelefono]=ejemplo.value></ngbd-modal-component>
 
  
- 
 </div>
+
     
 </body>
 
