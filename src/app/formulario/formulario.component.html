@@ -1,0 +1,38 @@
+
+
+<form [formGroup]="formularioNota" class="form-horizontal" (ngSubmit)="onSubmit()" novalidate>
+  <div class="form-group w-100" >
+    <label class="center-block w-100">
+      Creador:
+      <input class="form-control form-control-sm" formControlName="creador">
+      Fecha:
+      <input class="form-control form-control-sm" formControlName="fecha">
+      Telefono:
+      <input class="form-control form-control-sm" formControlName="telefono">
+      Contenido:
+      <input class="form-control form-control-sm" formControlName="contenido">
+      <div *ngIf="contenido.errors?.required" class="msgerror">
+        La nota no puede estar vacía.
+      </div>
+      Detalles:
+      <textarea class="form-control form-control-sm" formControlName="detalles"></textarea>
+      Peligrosidad:
+      <input class="form-control form-control-sm" formControlName="peligrosidad">
+      <div *ngIf="peligrosidad.errors?.required||peligrosidad.errors?.min||peligrosidad.errors?.max" class="msgerror">
+        La peligrosidad ha de estar entre 1 y 9.
+      </div>
+      Impacto:
+      <input class="form-control form-control-sm" formControlName="impacto">
+      <div *ngIf="impacto.errors?.required||impacto.errors?.min||impacto.errors?.max" class="msgerror">
+        El impacto ha de estar entre 1 y 9.
+      </div>
+
+      <button type="submit"
+            [disabled]="formularioNota.pristine" *ngIf="soloTelefono==undefined" class="btn btn-success">Guardar Cambios</button> &nbsp;
+            <button type="submit"
+            [disabled]="formularioNota.pristine" *ngIf="soloTelefono!=undefined" class="btn btn-success">Guardar nueva nota</button> &nbsp;
+            
+    </label>
+  </div>
+</form>
+<p>Form value: {{ formularioNota.value | json }}</p>
