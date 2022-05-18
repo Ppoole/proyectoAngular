@@ -39,12 +39,9 @@
  
  <ngbd-modal-component *ngIf="numeroEnConsulta!=''" [soloTelefono]=ejemplo.value></ngbd-modal-component>
 
- <ng-container *ngIf="personaEnMemoria!=undefined" >
-  <p>Nombre: {{personaEnMemoria.nombre}}</p>
-  <p>Detalles: {{personaEnMemoria.detalles}}</p>
-  <p>{{personaEnMemoria.nivelContento}}</p>
-  <app-opinion-emoji [gradoConfianza]="5"></app-opinion-emoji>
-</ng-container>
+ <app-datos-persona *ngIf="ejemplo.value!=''" [numeroEnBusqueda]=ejemplo.value></app-datos-persona>
+  
+
 
 
 </div>

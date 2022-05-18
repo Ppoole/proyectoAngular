@@ -9,6 +9,7 @@ import { GuardarNotaService } from './shared/servicios/GuardarNota.service';
 import { NuevaNotaService } from './shared/servicios/NuevaNota.service';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { OpinionEmojiComponent } from './opinion-emoji/opinion-emoji.component';
+import { DatosPersonaComponent } from './datos-persona/datos-persona.component';
 
 
 
@@ -18,7 +19,8 @@ import { OpinionEmojiComponent } from './opinion-emoji/opinion-emoji.component';
 @NgModule({
   declarations: [
     AppComponent,
-    OpinionEmojiComponent
+    OpinionEmojiComponent,
+    DatosPersonaComponent
   ],
   imports: [
     BrowserModule,HttpClientModule,NgbdModalComponentModule,FormsModule,ReactiveFormsModule,AngularSvgIconModule.forRoot()

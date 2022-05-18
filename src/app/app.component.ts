@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ChangeDetectorRef ,ViewChild } from '@angular/core';
 import { NotasService } from './notas.service';
 import { Nota } from "./shared/models/nota.model";
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
@@ -7,6 +7,8 @@ import { Subscription, timer } from 'rxjs';
 import { GuardarNotaService } from './shared/servicios/GuardarNota.service';
 import { ObtenPersonaService } from './shared/servicios/ObtenPersona.service';
 import { Persona } from './shared/models/persona.model';
+import { DatosPersonaComponent } from './datos-persona/datos-persona.component';
+
 
 
 @Component({
@@ -41,8 +43,10 @@ export class AppComponent {
   //Genero un servicio de adquisicion de notas.
   constructor(private notasService: NotasService, private GuardaNotaService: GuardarNotaService, private ObtenPersonaService:ObtenPersonaService) { }
 
-  //El array lo pueblo mas adelante, pero lo crearé aquí, mas que nada porque no se si se puede crearlo según recibes los datos.
 
+  @ViewChild(DatosPersonaComponent) hijoPersona:DatosPersonaComponent;
+
+  //El array lo pueblo mas adelante, pero lo crearé aquí, mas que nada porque no se si se puede crearlo según recibes los datos.
   arrNotas: Nota[] = [];
   arrPreModel: any;
 
@@ -61,23 +65,15 @@ export class AppComponent {
           this.arrNotas.push(new Nota(this.arrPreModel[i]));
         }
 
-        console.log(this.arrNotas); //QUitar luego
+        
         this.mostrar = true;
         if (!this.timerEmpezado) { // Lo que dije en el timer, es una variable de control que impide iniciarse varias veces.
           this.startTimer();
         }
       })
-
-      //Ahora los datos personales, si los hay.
-      this.ObtenPersonaService.obtenPersona(tel).subscribe(datosPersona => {
-      if (datosPersona!=undefined){
-      let personaActual=new Persona(datosPersona[0]);
-      this.personaEnMemoria=personaActual;
+      if(this.hijoPersona!=undefined){
+      this.hijoPersona.actualizar(this.numeroEnConsulta);
       }
-      else{
-        this.personaEnMemoria=undefined;
-      }
-      })
 
     };
   }
