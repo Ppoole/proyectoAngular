@@ -12,27 +12,38 @@
 
 
 <body>
-  <div id="grande" (click)="dameNumeros(ejemplo.value)">
+  <div id="grande" (focus)="dameNumeros(ejemplo.value)">
   <div class=item1> <h1>Aplicación teléfono</h1></div>
 
   <!-- El # está para poderlo usar de referencia al hacer click. -->
   <input #ejemplo type="text" id="name" name="name" (keyup.enter)="dameNumeros(ejemplo.value)">
-  <button *ngIf="ejemplo.value!=''" (click)="dameNumeros(ejemplo.value)">Buscar</button>
-  <div class=item2><h3 class=item21>Introduce el número de teléfono.</h3>
-  
-  </div>
+  <button (click)="dameNumeros(ejemplo.value)">Buscar</button>
+  <div class=item2><h3 class=item21>Introduce el número de teléfono.</h3></div>
   <!-- Creo un container que solo aparece cuando se ha buscado un número. -->
-  <ng-container *ngIf="mostrar==true" >
+  <ng-container *ngIf="mostrar==true && numeroEnConsulta!=''" >
     <table border=1>
-      <!-- TODO: El check de hecho.-->
+      
     <tr  class="cabecera"><td>Creador</td><td>Fecha</td><td id="contenido">Contenido</td><td>Detalles</td><td>Peligrosidad</td><td>Impacto</td><td>Completada</td></tr>
-      <tr *ngFor="let dato of arrNotas"><td>{{dato.creador}}</td><td>{{dato.fecha}}</td><td id="contenido">{{dato.contenido}}</td><td>{{dato.detalles}}</td><td>{{dato.peligrosidad}}</td><td>{{dato.impacto}}</td><td>{{dato.completada}}</td><td><ngbd-modal-component [notaActual]=dato></ngbd-modal-component></td></tr>
+      <tr *ngFor="let dato of arrNotas"><td>{{dato.creador}}</td>
+        <td>{{dato.fecha}}</td>
+        <td id="contenido">{{dato.contenido}}</td>
+        <td>{{dato.detalles}}</td>
+        <td>{{dato.peligrosidad}}</td>
+        <td>{{dato.impacto}}</td>
+        <td *ngIf="dato.completada==1"><input type="checkbox" (change)="checkUncheck(dato)" checked ></td>
+        <td *ngIf="dato.completada==0"><input type="checkbox" (change)="checkUncheck(dato)"></td>
+        <td><ngbd-modal-component [notaActual]=dato></ngbd-modal-component></td></tr>
     </table>
-    
  </ng-container>
 
  
- <ngbd-modal-component [soloTelefono]=ejemplo.value></ngbd-modal-component>
+ <ngbd-modal-component *ngIf="numeroEnConsulta!=''" [soloTelefono]=ejemplo.value></ngbd-modal-component>
+
+ <ng-container *ngIf="personaEnMemoria!=undefined" >
+  <p>Nombre: {{personaEnMemoria.nombre}}</p>
+  <p>Detalles: {{personaEnMemoria.detalles}}</p>
+  <p>{{personaEnMemoria.nivelContento}}</p>
+</ng-container>
 
  
 </div>

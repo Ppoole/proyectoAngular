@@ -21,6 +21,7 @@ export class GuardarNotaService {
   guardaNota(notaActual:Nota):Observable<any>{
     return this.http.post<any>(this.notasUrl, {
       tel:notaActual.tel,
+      completada:notaActual.completada,
       codNota:notaActual.codNota,
       contenido:notaActual.contenido,
       detalles:notaActual.detalles,
