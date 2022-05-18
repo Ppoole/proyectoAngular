@@ -1,6 +1,7 @@
+<!--Todavia queda mucho que diseñar.-->
 <ng-container *ngIf="personaEnMemoria!=undefined" >
 <p>Nombre: {{personaEnMemoria.nombre}}</p>
   <p>Detalles: {{personaEnMemoria.detalles}}</p>
   <p>{{personaEnMemoria.nivelContento}}</p>
-  <app-opinion-emoji [gradoConfianza]="5"></app-opinion-emoji>
+  <app-opinion-emoji [gradoConfianza]="personaEnMemoria.nivelContento"></app-opinion-emoji>
 </ng-container>
