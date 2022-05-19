@@ -17,11 +17,19 @@ export class NuevaNotaService {
   constructor(private http: HttpClient,) { }
 
   //Conexion con el servidor PHP nuevaNota.
-  private notasUrl = 'http://127.0.0.1/nuevaNota.php';
+  private notasUrl = 'http://127.0.0.1/entradaDB.php';
   nuevaNota(notaActual:Nota):Observable<any>{
     return this.http.post<any>(this.notasUrl, {
       tabla:'nota',
-      valores:{creador:notaActual.creador,fecha:notaActual.fecha,peligrosidad:notaActual.peligrosidad, impacto:notaActual.impacto, completada:notaActual.completada, tel:notaActual.tel.toString(), contenido:notaActual.contenido, detalles:notaActual.detalles}
+      datos:{
+        creador:notaActual.creador,
+        fecha:notaActual.fecha,
+        peligrosidad:notaActual.peligrosidad, 
+        impacto:notaActual.impacto, 
+        completada:notaActual.completada, 
+        tel:notaActual.tel.toString(),
+        contenido:notaActual.contenido,
+        detalles:notaActual.detalles}
     })
   }
 

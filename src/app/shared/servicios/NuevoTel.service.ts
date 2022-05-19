@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import {Persona} from "../models/persona.model";
+import {Telefono} from "../models/tel.model";
 import { map } from 'rxjs/operators';
 import { tap } from 'rxjs/operators';
 import { AppComponent } from 'src/app/app.component';
@@ -12,27 +12,20 @@ import { AppComponent } from 'src/app/app.component';
 @Injectable({
   providedIn: 'root'
 })
-export class NuevaPersonaService {
+export class NuevoTelService {
 
   constructor(private http: HttpClient,) { }
 
   //Conexion con el servidor PHP nuevaNota.
   private notasUrl = 'http://127.0.0.1/entradaDB.php';
-  private contador= 'http://127.0.0.1/contador.php'
-
-  nuevaPersona(PersonaActual:Persona):Observable<any>{
+  nuevoTelefono(telefonoActual:Telefono):Observable<any>{
     return this.http.post<any>(this.notasUrl, {
-      tabla:'persona',
+      tabla:'telefono',
       datos:{
-      nombre:PersonaActual.nombre,
-      detalles:PersonaActual.detalles,
-      nivelContento:PersonaActual.nivelContento
-      }
-    })
-  }
-
-  cuentaPersonas():Observable<number>{
-    return this.http.post<any>(this.contador,'');
+        tel:telefonoActual.telefono,
+        codPer:telefonoActual.codPer,
+      }}
+    )
   }
 
 }

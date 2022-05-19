@@ -12,27 +12,21 @@ import { AppComponent } from 'src/app/app.component';
 @Injectable({
   providedIn: 'root'
 })
-export class NuevaPersonaService {
+export class GuardarPersonaService {
 
   constructor(private http: HttpClient,) { }
 
-  //Conexion con el servidor PHP nuevaNota.
-  private notasUrl = 'http://127.0.0.1/entradaDB.php';
-  private contador= 'http://127.0.0.1/contador.php'
-
-  nuevaPersona(PersonaActual:Persona):Observable<any>{
+  //Conexion con el servidor PHP guardaNota.
+  private notasUrl = 'http://127.0.0.1/actualizaDB.php';
+  guardaPersona(personaActual:Persona):Observable<any>{
     return this.http.post<any>(this.notasUrl, {
       tabla:'persona',
-      datos:{
-      nombre:PersonaActual.nombre,
-      detalles:PersonaActual.detalles,
-      nivelContento:PersonaActual.nivelContento
-      }
+      nomId:'codPer',
+      id:personaActual.codPer,
+      datos:{nombre:personaActual.nombre, detalles:personaActual.detalles, nivelContento:personaActual.nivelContento}
     })
   }
 
-  cuentaPersonas():Observable<number>{
-    return this.http.post<any>(this.contador,'');
-  }
+  
 
 }

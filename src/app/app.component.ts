@@ -25,7 +25,7 @@ export class AppComponent {
   personaEnMemoria:Persona=undefined;
   startTimer(): void {
     this.timerEmpezado = true;
-    const source = timer(1000, 10000); //TODO: Vincularlo a un config.
+    const source = timer(1000000, 10000000); //TODO: Vincularlo a un config.
     this.subscription = source.subscribe(val => {
       this.dameNumeros(this.numeroEnConsulta)
     }
