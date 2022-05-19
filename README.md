@@ -23,3 +23,4 @@ Añadir más estadisticas.
 Todas las notas de X telefono
 EventEmitter al guardar
 Arreglar los creadores
+Acceder a BDD desde model
