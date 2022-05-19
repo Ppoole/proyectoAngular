@@ -14,4 +14,4 @@ import { NgbdModalComponent, NgbdModalContent } from './modal-component';
   exports: [NgbdModalComponent],
   bootstrap: [NgbdModalComponent]
 })
-export class NgbdModalComponentModule {}
+export class NgbdModalComponentModule{}
