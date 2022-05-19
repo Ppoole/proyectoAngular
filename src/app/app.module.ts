@@ -10,6 +10,7 @@ import { NuevaNotaService } from './shared/servicios/NuevaNota.service';
 import { AngularSvgIconModule } from 'angular-svg-icon';
 import { OpinionEmojiComponent } from './opinion-emoji/opinion-emoji.component';
 import { DatosPersonaComponent } from './datos-persona/datos-persona.component';
+import { ModalTodasNotasComponentModule } from './modal-todas-notas/modal-todas-notas-component.module';
 
 
 
@@ -20,10 +21,10 @@ import { DatosPersonaComponent } from './datos-persona/datos-persona.component';
   declarations: [
     AppComponent,
     OpinionEmojiComponent,
-    DatosPersonaComponent
+    DatosPersonaComponent,
   ],
   imports: [
-    BrowserModule,HttpClientModule,NgbdModalComponentModule,FormsModule,ReactiveFormsModule,AngularSvgIconModule.forRoot()
+    BrowserModule,HttpClientModule,NgbdModalComponentModule,ModalTodasNotasComponentModule,FormsModule,ReactiveFormsModule,AngularSvgIconModule.forRoot()
   ],
   providers: [NgbActiveModal,GuardarNotaService,AppComponent,NuevaNotaService],
   bootstrap: [AppComponent]
