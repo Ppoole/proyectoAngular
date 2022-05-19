@@ -1,5 +1,6 @@
-import { Component, NgModule, OnInit, Input } from "@angular/core";
+import { Component, NgModule, OnInit, Input, EventEmitter, Output } from "@angular/core";
 import { FormBuilder, FormControl, FormGroup, Validators } from "@angular/forms";
+import { NgbActiveModal } from "@ng-bootstrap/ng-bootstrap";
 import { AppComponent } from "../app.component";
 import { Nota } from "../shared/models/nota.model";
 import { GuardarNotaService } from "../shared/servicios/GuardarNota.service";
@@ -17,9 +18,10 @@ import { NuevaNotaService } from "../shared/servicios/NuevaNota.service";
 export class FormularioComponent {
   @Input() notaActual: Nota;
   @Input() soloTelefono: bigint;
-
-
   
+
+
+  guardado=false;
   formularioNota: FormGroup;
 
   //Voy a usar FormBuilder para simplificar la creación del formulario, pero es una abstracción.
@@ -85,6 +87,7 @@ export class FormularioComponent {
     this.formularioNota.patchValue(res);
   }
 
+
   //Es al darle a guardar cambios. Si los cambios son válidos (TODO: enviarlos al servicio y a la BDD)
   onSubmit() {
     
@@ -107,8 +110,8 @@ export class FormularioComponent {
 
         })
       }
-
-
+      
+      this.guardado=true;
 
     }
     else {
@@ -116,6 +119,9 @@ export class FormularioComponent {
     }
   }
 
+  desguardar(){
+    this.guardado=false;
+  }
   //Este es el metodo de cambiar la nota. 
   cambiarNota(): Nota {
     const modeloFormu = this.formularioNota.value;

@@ -1,1 +1,124 @@
 /* You can add global styles to this file, and also import other style files */
+#grande{
+    position:absolute;
+    height: 100%;
+    
+    width: 100%;
+}
+
+svg{
+    height: auto;
+}
+
+table{
+    table-layout:fixed;
+}
+#notasPh {
+    
+    height: 90vh;
+    max-height: 90vh;
+    overflow-y: scroll;
+}
+
+.cabecera td{
+    font-weight: bolder;
+}
+
+#creador{
+  width:7%;
+}
+
+#fecha{
+  width:7%;
+}
+
+#contenido{
+    
+    width: 40%;
+}
+
+button{
+    background-color: #996600;
+    color:#ffcc66;
+    font-size: medium;
+  }
+
+#botonNueva{
+    background-color: #996600;
+    color:#ffcc66;
+    font-size: x-large;
+}
+
+  .item21 {
+      grid-area: ins;
+      overflow: hidden;
+    }
+    .item22 {
+      grid-area: telf;
+      overflow: hidden;
+      font-size: x-large;
+      text-align: center;
+    }
+
+  .item1 {
+      grid-area: header;
+      background-color: #ffdd99;
+      overflow: hidden;
+    }
+
+    .item2 {
+      display:grid;
+      grid-template-areas:
+        'ins ins'
+        'telf buscar'
+        
+        ;
+      grid-area: tel;
+      background-color: #ffdd99;
+      overflow: hidden;
+      font-size: x-large;
+    }
+
+ 
+    .item3 {
+      grid-area: dato;
+      background-color: #ffdd99;
+      overflow: hidden;
+    }
+
+    .item4 {
+      grid-area: nota;
+      background-color: #ffdd99;
+      overflow: hidden;
+    }
+
+    .bold{
+      font-weight: bold;
+    }
+
+    .enLinea{
+      display: inline;
+    }
+
+
+    body {
+      
+      
+      
+      background-color: #ffcc66 !important;
+      
+      
+    }
+
+  h1{
+    text-align: center;
+  }
+
+  h3{
+    text-align: center;
+  }
+
+  input[type=submit]{
+    background-color: #996600;
+    color:#ffcc66;
+  }

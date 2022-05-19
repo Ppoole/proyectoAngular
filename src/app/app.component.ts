@@ -11,6 +11,9 @@ import { DatosPersonaComponent } from './datos-persona/datos-persona.component';
 
 
 
+
+
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -23,6 +26,9 @@ export class AppComponent {
   timerEmpezado = false; //Esto está así porque como esta función llama a otra que llama a esta, o pongo una variable de control, o la llama de forma exponencial.
   subscription: Subscription;
   personaEnMemoria:Persona=undefined;
+
+  
+
   startTimer(): void {
     this.timerEmpezado = true;
     const source = timer(1000000, 10000000); //TODO: Vincularlo a un config.
@@ -49,6 +55,7 @@ export class AppComponent {
   //El array lo pueblo mas adelante, pero lo crearé aquí, mas que nada porque no se si se puede crearlo según recibes los datos.
   arrNotas: Nota[] = [];
   arrPreModel: any;
+  arrCreadores: string[]=["","Pedro"] //TODO: Poblar desde la base de datos.
 
 
 
@@ -78,11 +85,10 @@ export class AppComponent {
     };
   }
 
-  //A veces sólo quiero oir a una función sufrir.
-  grita() {
+  dameNombre(creador:number) {
 
-
-    alert("AAAAA");
+    return this.arrCreadores[creador];
+    
   }
 
   checkUncheck(nota: Nota) {

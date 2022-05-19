@@ -9,7 +9,7 @@ import { AppComponent } from '../app.component';
 @Component({
   selector: 'ngbd-modal-content',
   template: `
-    <div class="modal-header">
+    <div class="modal-header" (cerrar)="activeModal.dismiss('Cross click')">
       <h4 class="modal-title">Detalles de la nota.</h4>
       <button type="button" class="btn-close" aria-label="Close" (click)="activeModal.dismiss('Cross click')"></button>
     </div>
@@ -21,7 +21,8 @@ import { AppComponent } from '../app.component';
       <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
     </div>
   `,
-  styleUrls: ["../formulario/formulario.component.css"]
+  styleUrls: ["../formulario/formulario.component.scss"],
+  encapsulation: ViewEncapsulation.None
 })
 export class NgbdModalContent {
   @Input() notaActual: Nota;
@@ -35,7 +36,8 @@ export class NgbdModalContent {
 
 @Component({
   selector: 'ngbd-modal-component',
-  templateUrl: './modal-component.html'
+  templateUrl: './modal-component.html',
+  styleUrls: ["./modal-component.scss"]
 },
 
 )

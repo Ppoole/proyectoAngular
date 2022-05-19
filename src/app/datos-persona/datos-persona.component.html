@@ -1,7 +1,11 @@
 <!--Todavia queda mucho que diseñar. TODO: Coger el textArea.-->
 <ng-container *ngIf="personaEnMemoria!=undefined" >
-<input #nombre value="{{personaEnMemoria.nombre}}">
-<input #detalles value="{{personaEnMemoria.detalles}}">
+<div class="datosPersona">
+<label for="nombre">Nombre: </label>
+<input id="nombre" #nombre value="{{personaEnMemoria.nombre}}"><br>
+<label for="detalles">Detalles: </label>
+<textarea cols="50" id="detalles" #detalles value="{{personaEnMemoria.detalles}}"></textarea><br>
 <app-opinion-emoji [personaActual]="personaEnMemoria"></app-opinion-emoji>
 <button (click)="guardaPersona(nombre.value,detalles.value)">Actualizar datos</button>
+</div>
 </ng-container>

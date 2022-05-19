@@ -12,22 +12,28 @@
 
 
 <body>
-  <div id="grande" (focus)="dameNumeros(ejemplo.value)">
+ 
+  <header>
   <div class=item1> <h1>Aplicación teléfono</h1></div>
-
+</header>
   <!-- El # está para poderlo usar de referencia al hacer click. -->
-  <input #ejemplo type="text" id="name" name="name" (keyup.enter)="dameNumeros(ejemplo.value)">
+  <div class="item2">
+  <h3 class=item21>Introduce el número de teléfono.</h3>
+  <input #ejemplo class="num item22" type="text" id="name" name="name" (keyup.enter)="dameNumeros(ejemplo.value)">
   <button (click)="dameNumeros(ejemplo.value)">Buscar</button>
-  <div class=item2><h3 class=item21>Introduce el número de teléfono.</h3></div>
+  
+</div>
   <!-- Creo un container que solo aparece cuando se ha buscado un número. -->
+  <div class="item4">
   <ng-container *ngIf="mostrar==true && numeroEnConsulta!=''" >
-    <table border=1>
+    <table>
       
-    <tr  class="cabecera"><td>Creador</td><td>Fecha</td><td id="contenido">Contenido</td><td>Detalles</td><td>Peligrosidad</td><td>Impacto</td><td>Completada</td></tr>
-      <tr *ngFor="let dato of arrNotas"><td>{{dato.creador}}</td>
-        <td>{{dato.fecha}}</td>
+    <tr class="cabecera"><td>Creador</td><td>Fecha</td><td id="contenido">Contenido</td><td>Detalles</td><td>Peligrosidad</td><td>Impacto</td><td>Completada</td></tr>
+      <tr *ngFor="let dato of arrNotas">
+        <td>{{dameNombre(dato.creador)}}</td>
+        <td id="fecha">{{dato.fecha}}</td>
         <td id="contenido">{{dato.contenido}}</td>
-        <td>{{dato.detalles}}</td>
+        <td><span title={{dato.detalles}}>Detalles</span></td>
         <td>{{dato.peligrosidad}}</td>
         <td>{{dato.impacto}}</td>
         <td *ngIf="dato.completada==1"><input type="checkbox" (change)="checkUncheck(dato)" checked ></td>
@@ -35,18 +41,32 @@
         <td><ngbd-modal-component [notaActual]=dato></ngbd-modal-component></td></tr>
     </table>
  </ng-container>
-
+</div>
  
+
+
  <ngbd-modal-component *ngIf="numeroEnConsulta!=''" [soloTelefono]=ejemplo.value></ngbd-modal-component>
-<br>
- <app-datos-persona *ngIf="ejemplo.value!=''" [numeroEnBusqueda]=ejemplo.value></app-datos-persona>
+ 
+
+  
 
 
-
-<modal-todas-notas-component></modal-todas-notas-component>
+<div class="flex">
+ <modal-todas-notas-component></modal-todas-notas-component>  <estadisticas-component></estadisticas-component>
 </div>
 
-    
+
+
+ <app-datos-persona class="item3" *ngIf="ejemplo.value!=''" [numeroEnBusqueda]=ejemplo.value></app-datos-persona>
+
+
+
+
+ 
+  
+ 
+
+  
 </body>
 
 </html>
