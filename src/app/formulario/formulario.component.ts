@@ -5,6 +5,7 @@ import { AppComponent } from "../app.component";
 import { Nota } from "../shared/models/nota.model";
 import { GuardarNotaService } from "../shared/servicios/GuardarNota.service";
 import { NuevaNotaService } from "../shared/servicios/NuevaNota.service";
+import {DatePipe} from '@angular/common';
 
 
 
@@ -25,7 +26,7 @@ export class FormularioComponent {
   formularioNota: FormGroup;
 
   //Voy a usar FormBuilder para simplificar la creación del formulario, pero es una abstracción.
-  constructor(private fb: FormBuilder, private GuardarNotaService: GuardarNotaService, private NuevaNotaService: NuevaNotaService) {
+  constructor(private fb: FormBuilder, private GuardarNotaService: GuardarNotaService, private NuevaNotaService: NuevaNotaService,private DatePipe: DatePipe) {
 
     this.crearFormulario();
   }
@@ -35,7 +36,7 @@ export class FormularioComponent {
     this.formularioNota = this.fb.group({
       //Defino los campos, y aquí es donde pongo las validaciones.
       creador: ({ value: '', disabled: true }),
-      fecha: ({ value: '', disabled: true }),
+      fecha: ({ value: ''}),
       telefono: ({ value: '', disabled: true }),
       contenido: ['', Validators.required],
       detalles: ['', Validators.required],
@@ -61,6 +62,8 @@ export class FormularioComponent {
 
     }
   }
+
+  //Si el estamos editando, entonces restaura los datos.
   private retrieveData(): void {
     let res = {
       creador: this.notaActual.creador,
@@ -73,11 +76,11 @@ export class FormularioComponent {
     }
     this.formularioNota.patchValue(res);
   }
-
+// Si estamos creando, crea datos nuevos
   private createData(): void {
     let res = {
       creador: 1,
-      fecha: new Date(),
+      fecha: this.DatePipe.transform(new Date(),"yyyy-MM-dd"),
       telefono: this.soloTelefono,
       contenido: '',
       detalles: '',
@@ -104,6 +107,7 @@ export class FormularioComponent {
         })
       }
       else{ //Si soloTelefono está definido es que se quiere crear una nota nueva.
+        alert(this.notaActual.fecha)
         this.NuevaNotaService.nuevaNota(this.notaActual).subscribe(respuesta => {
 
           return respuesta;
@@ -125,7 +129,7 @@ export class FormularioComponent {
   //Este es el metodo de cambiar la nota. 
   cambiarNota(): Nota {
     const modeloFormu = this.formularioNota.value;
-
+    
     if(this.soloTelefono!=undefined){ //De nuevo tengo que diferenciar si estoy creando una nota nueva o editando una nota antigua. TODO: Creador como variable, no como 1.
       const notaCambiada: Nota = {
       

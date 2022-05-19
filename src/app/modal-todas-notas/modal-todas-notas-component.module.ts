@@ -4,6 +4,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormularioComponent } from "../formulario/formulario.component";
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { CommonModule } from '@angular/common'
+import { DatePipe } from '@angular/common';
 
 
 
@@ -14,6 +15,7 @@ import { ModalTodasNotasComponent, ModalTodasNotasContent } from './modal-todas-
   imports: [BrowserModule, NgbModule,FormsModule,ReactiveFormsModule,CommonModule],
   declarations: [ModalTodasNotasComponent, ModalTodasNotasContent],
   exports: [ModalTodasNotasComponent],
+  providers: [DatePipe],
   bootstrap: [ModalTodasNotasComponent]
 })
 export class ModalTodasNotasComponentModule{}

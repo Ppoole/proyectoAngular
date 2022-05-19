@@ -17,19 +17,17 @@ export class GuardarNotaService {
   constructor(private http: HttpClient,) { }
 
   //Conexion con el servidor PHP guardaNota.
-  private notasUrl = 'http://127.0.0.1/guardaNota.php';
+  private notasUrl = 'http://127.0.0.1/actualizaDB.php';
   guardaNota(notaActual:Nota):Observable<any>{
     return this.http.post<any>(this.notasUrl, {
-      tel:notaActual.tel,
-      completada:notaActual.completada,
-      codNota:notaActual.codNota,
-      contenido:notaActual.contenido,
-      detalles:notaActual.detalles,
-      peligrosidad:notaActual.peligrosidad,
-      impacto:notaActual.impacto
+      tabla:'nota',
+      nomId:'codNota',
+      id:notaActual.codNota,
+      datos:{creador:notaActual.creador,fecha:notaActual.fecha, peligrosidad:notaActual.peligrosidad, impacto:notaActual.impacto, completada:notaActual.completada, tel:notaActual.tel, contenido:notaActual.contenido, detalles:notaActual.detalles}
     })
-  }
 
   
+  }
+
 
 }

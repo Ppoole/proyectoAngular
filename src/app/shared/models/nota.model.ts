@@ -43,9 +43,21 @@ export class Nota {
     }
 
     
-    
+    dameRelevancia?(pesoPeligrosidad:number, pesoImpacto:number):number{
+      return(this.peligrosidad*pesoPeligrosidad+this.impacto*pesoImpacto);
+    }
 
-      
+    enFecha?(horasMaximas:number):any{
+      var horas:number =Math.abs(new Date().getTime()-new Date(this.fecha).getTime())/1000/3600;
+
+      if(horas>horasMaximas){
+        return false;
+      }
+      else{
+        return true;
+      }
+
+    }
     
 
   }

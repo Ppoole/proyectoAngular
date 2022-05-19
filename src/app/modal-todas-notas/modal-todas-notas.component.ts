@@ -26,13 +26,13 @@ import html2canvas from 'html2canvas';
       
     <tr #todasNotas class="cabecera"><td>Creador</td><td>Teléfono</td><td>Fecha</td><td id="contenido">Contenido</td><td>Detalles</td><td>Peligrosidad</td><td>Impacto</td><td>Completada</td></tr>
       <tr *ngFor="let dato of arrNotas">
-        <td>{{dato.creador}}</td>
-        <td>{{dato.tel}}</td>
-        <td>{{dato.fecha}}</td>
-        <td id="contenido">{{dato.contenido}}</td>
+        <td [ngClass]="{'Alerta':dato.enFecha(this.horasMaximas)==false&&dato.dameRelevancia(this.pesoPeligrosidad,this.pesoImpacto)>=this.umbralRelevancia&&dato.completada==0}">{{dato.creador}}</td>
+        <td [ngClass]="{'Alerta':dato.enFecha(this.horasMaximas)==false&&dato.dameRelevancia(this.pesoPeligrosidad,this.pesoImpacto)>=this.umbralRelevancia&&dato.completada==0}">{{dato.tel}}</td>
+        <td [ngClass]="{'Alerta':dato.enFecha(this.horasMaximas)==false&&dato.dameRelevancia(this.pesoPeligrosidad,this.pesoImpacto)>=this.umbralRelevancia&&dato.completada==0}">{{dato.fecha}}</td>
+        <td [ngClass]="{'Alerta':dato.enFecha(this.horasMaximas)==false&&dato.dameRelevancia(this.pesoPeligrosidad,this.pesoImpacto)>=this.umbralRelevancia&&dato.completada==0}" id="contenido">{{dato.contenido}}</td>
         <td><span title={{dato.detalles}}>Detalles</span></td>
-        <td>{{dato.peligrosidad}}</td>
-        <td>{{dato.impacto}}</td>
+        <td [ngClass]="{'Alerta':dato.enFecha(this.horasMaximas)==false&&dato.dameRelevancia(this.pesoPeligrosidad,this.pesoImpacto)>=this.umbralRelevancia&&dato.completada==0}">{{dato.peligrosidad}}</td>
+        <td [ngClass]="{'Alerta':dato.enFecha(this.horasMaximas)==false&&dato.dameRelevancia(this.pesoPeligrosidad,this.pesoImpacto)>=this.umbralRelevancia&&dato.completada==0}">{{dato.impacto}}</td>
         <td *ngIf="dato.completada==1"><input type="checkbox" (change)="checkUncheck(dato)" checked ></td>
         <td *ngIf="dato.completada==0"><input type="checkbox" (change)="checkUncheck(dato)"></td>
       
@@ -53,6 +53,13 @@ export class ModalTodasNotasContent {
   arrNotas: Nota[] = [];
   arrPreModel: any;
   soloCompletas: boolean = false;
+
+
+  pesoPeligrosidad:number=0.5;
+  pesoImpacto:number=0.5;
+  horasMaximas:number=24;
+  umbralRelevancia:number=4;
+
 
   ngOnInit() {
 
@@ -101,17 +108,14 @@ export class ModalTodasNotasContent {
     }
   }
 
+
+  // Sencillo salvador a PDF. TODO: Jugar con el, ponerlo bonito.
   SavePDF(): void {
     let content = this.aExportar.nativeElement;
 
     let doc = new jsPDF('l', 'px', 'a3');
 
-    let _elementHandlers =
-    {
-      '#editor': function (element: any, renderer: any) {
-        return true;
-      }
-    };
+    
     
     doc.html(content.innerHTML, {
       callback: (pdf) => {

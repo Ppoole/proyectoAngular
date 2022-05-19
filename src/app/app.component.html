@@ -28,14 +28,15 @@
   <ng-container *ngIf="mostrar==true && numeroEnConsulta!=''" >
     <table>
       
-    <tr class="cabecera"><td>Creador</td><td>Fecha</td><td id="contenido">Contenido</td><td>Detalles</td><td>Peligrosidad</td><td>Impacto</td><td>Completada</td></tr>
+    <tr class="cabecera"><td>Creador</td><td>Fecha</td><td id="contenido">Contenido</td><td>Detalles</td><td>Peligrosidad</td><td>Impacto</td><td>Relevancia</td><td>Completada</td></tr>
       <tr *ngFor="let dato of arrNotas">
-        <td>{{dameNombre(dato.creador)}}</td>
-        <td id="fecha">{{dato.fecha}}</td>
-        <td id="contenido">{{dato.contenido}}</td>
-        <td><span title={{dato.detalles}}>Detalles</span></td>
-        <td>{{dato.peligrosidad}}</td>
-        <td>{{dato.impacto}}</td>
+        <td [ngClass]="{'Alerta':dato.enFecha(this.horasMaximas)==false&&dato.dameRelevancia(this.pesoPeligrosidad,this.pesoImpacto)>=this.umbralRelevancia&&dato.completada==0}">{{dameNombre(dato.creador)}}</td>
+        <td [ngClass]="{'Alerta':dato.enFecha(this.horasMaximas)==false&&dato.dameRelevancia(this.pesoPeligrosidad,this.pesoImpacto)>=this.umbralRelevancia&&dato.completada==0}"id="fecha">{{dato.fecha}}</td>
+        <td [ngClass]="{'Alerta':dato.enFecha(this.horasMaximas)==false&&dato.dameRelevancia(this.pesoPeligrosidad,this.pesoImpacto)>=this.umbralRelevancia&&dato.completada==0}"id="contenido">{{dato.contenido}}</td>
+        <td [ngClass]="{'Alerta':dato.enFecha(this.horasMaximas)==false&&dato.dameRelevancia(this.pesoPeligrosidad,this.pesoImpacto)>=this.umbralRelevancia&&dato.completada==0}"><span title={{dato.detalles}}>Detalles</span></td>
+        <td [ngClass]="{'Alerta':dato.enFecha(this.horasMaximas)==false&&dato.dameRelevancia(this.pesoPeligrosidad,this.pesoImpacto)>=this.umbralRelevancia&&dato.completada==0}">{{dato.peligrosidad}}</td>
+        <td [ngClass]="{'Alerta':dato.enFecha(this.horasMaximas)==false&&dato.dameRelevancia(this.pesoPeligrosidad,this.pesoImpacto)>=this.umbralRelevancia&&dato.completada==0}">{{dato.impacto}}</td>
+        <td [ngClass]="{'Alerta':dato.enFecha(this.horasMaximas)==false&&dato.dameRelevancia(this.pesoPeligrosidad,this.pesoImpacto)>=this.umbralRelevancia&&dato.completada==0}">{{dato.dameRelevancia(this.pesoPeligrosidad,this.pesoImpacto)}}</td>
         <td *ngIf="dato.completada==1"><input type="checkbox" (change)="checkUncheck(dato)" checked ></td>
         <td *ngIf="dato.completada==0"><input type="checkbox" (change)="checkUncheck(dato)"></td>
         <td><ngbd-modal-component [notaActual]=dato></ngbd-modal-component></td></tr>

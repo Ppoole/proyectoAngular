@@ -27,11 +27,17 @@ export class AppComponent {
   subscription: Subscription;
   personaEnMemoria:Persona=undefined;
 
+
+  pesoPeligrosidad:number=0.5;
+  pesoImpacto:number=0.5;
+  horasMaximas:number=24;
+  umbralRelevancia:number=4;
+
   
 
   startTimer(): void {
     this.timerEmpezado = true;
-    const source = timer(1000000, 10000000); //TODO: Vincularlo a un config.
+    const source = timer(1000, 10000); //TODO: Vincularlo a un config.
     this.subscription = source.subscribe(val => {
       this.dameNumeros(this.numeroEnConsulta)
     }
