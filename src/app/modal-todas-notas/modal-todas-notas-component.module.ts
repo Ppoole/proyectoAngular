@@ -8,12 +8,12 @@ import { CommonModule } from '@angular/common'
 
 
 
-import { NgbdModalComponent, NgbdModalContent } from './modal-component';
+import { ModalTodasNotasComponent, ModalTodasNotasContent } from './modal-todas-notas.component';
 
 @NgModule({
   imports: [BrowserModule, NgbModule,FormsModule,ReactiveFormsModule,CommonModule],
-  declarations: [NgbdModalComponent, NgbdModalContent,FormularioComponent],
-  exports: [NgbdModalComponent],
-  bootstrap: [NgbdModalComponent]
+  declarations: [ModalTodasNotasComponent, ModalTodasNotasContent],
+  exports: [ModalTodasNotasComponent],
+  bootstrap: [ModalTodasNotasComponent]
 })
-export class NgbdModalComponentModule{}
+export class ModalTodasNotasComponentModule{}
