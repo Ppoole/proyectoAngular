@@ -39,7 +39,7 @@ export class AppComponent {
     this.timerEmpezado = true;
     const source = timer(1000, 10000); //TODO: Vincularlo a un config.
     this.subscription = source.subscribe(val => {
-      this.dameNumeros(this.numeroEnConsulta)
+      this.dameNumeros(this.numeroEnConsulta,true)
     }
 
     )
@@ -66,7 +66,7 @@ export class AppComponent {
 
 
   //En este caso estamos usando un observer. Esto sólo se disparará al recibir una reacción, pero si recibe mas de una, lo hará varias veces. Lo cual es interesante.
-  dameNumeros(tel: any) {
+  dameNumeros(tel: any,actPersona?:any) { //actPersona es true si se busca una persona nueva, pero false con el timer, para evitar que parpadee y resetee.
     this.numeroEnConsulta = tel;
     if (tel != '') {
 
@@ -84,7 +84,7 @@ export class AppComponent {
           this.startTimer();
         }
       })
-      if(this.hijoPersona!=undefined){
+      if(this.hijoPersona!=undefined&&actPersona==false){
       this.hijoPersona.actualizar(this.numeroEnConsulta);
       }
 

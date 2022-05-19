@@ -19,8 +19,8 @@
   <!-- El # está para poderlo usar de referencia al hacer click. -->
   <div class="item2">
   <h3 class=item21>Introduce el número de teléfono.</h3>
-  <input #ejemplo class="num item22" type="text" id="name" name="name" (keyup.enter)="dameNumeros(ejemplo.value)">
-  <button (click)="dameNumeros(ejemplo.value)">Buscar</button>
+  <input #ejemplo class="num item22" type="text" id="name" name="name" (keyup.enter)="dameNumeros(ejemplo.value,false)">
+  <button (click)="dameNumeros(ejemplo.value,false)">Buscar</button>
   
 </div>
   <!-- Creo un container que solo aparece cuando se ha buscado un número. -->

@@ -120,7 +120,7 @@ export class ModalTodasNotasContent {
     doc.html(content.innerHTML, {
       callback: (pdf) => {
         pdf.setFontSize(7);
-        pdf.save("coso.pdf")
+        pdf.save("notas.pdf")
       }
     })
     
